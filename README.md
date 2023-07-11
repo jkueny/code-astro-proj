@@ -1,5 +1,6 @@
 # code-astro-proj
-This is for the double-star database project idea.
+The need for a single, bright star for calibrations arises for many astronomers. The purpose of this package is to return a catalog of bright, likely single stars.
+
 
 So we want to put in a RA Dec as command line arguments
 
