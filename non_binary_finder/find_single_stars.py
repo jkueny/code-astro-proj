@@ -33,6 +33,17 @@ def query_the_gaia(objloc,conerad,catalognamelist=["I/350/gaiaedr3","B/wds"],RUW
          obj_coord=SkyCoord(objloc[0],objloc[1],unit=(u.degree, u.degree), frame='icrs')
     else:
         obj_coord=SkyCoord(objloc,unit=(u.hourangle, u.degree), frame='icrs')
+    
+    #making sure cone radius value is proper
+
+    conerad= np.abs(conerad)
+
+    if conerad == 0:
+        raise ValueError("Search radius is 0!")
+
+    if conerad >= 2.0:
+        print("Search radius is large, will take longer to run ")    
+    
     result = Vizier.query_region(obj_coord,
                             radius=u.Quantity(conerad,u.deg),
                              catalog=catalognamelist )
