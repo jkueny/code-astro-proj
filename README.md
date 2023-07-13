@@ -1,4 +1,9 @@
 # code-astro-proj
+
+# Instructions for use
+
+- 
+
 The need for a single, bright star for calibrations arises for many astronomers interested in high-resolution imaging. The purpose of this package is to return a catalog of bright, likely single stars by filtering out multiple star systems.
 
 By default, this package does this by cross-matching the Gaia DR3 catalog with the Washington Double-Star Catalog (WDS) which exists to flag visual binaries. Other catalogs may be passed-in as arguments for additional functionality, though positive cross-match results means those objects will be excluded from the final CSV catalog. It also features user-set options for Renormalized Unit Weight Error (RUWE) and magnitude range to suit the user's needs.
@@ -17,9 +22,7 @@ The catalog columns include SIMBAD object name, Gaia identifier, RA, Dec, (V or 
 
 Future plans for this project include creating a SQL database to populate with multiple star systems as some of these objects will undoubtedly get through this process. For instance, the resolution capabilities of the instruments used to populate the WDS or the Gaia space telescope are often superceded by larger, ground-based telescopes meaning that unresolved multiple star systems are often serendipitously resolved for ground-based diffraction-limited imaging. For these cases, the object will be input into the database to exclude from future query results leading to increased accuracy over time.
 
-#Instructions for use
 
-- 
 
 [TODO] Change repository name to be more unique/descriptive, but how does this change git behavior?
 [TODO] make more general by defining more (all?) object identifiers in SIMBAD for additional catalog inputs on command line. This way we only ever need to query Gaia and SIMBAD once, and adding additional catalogs will not slow down the code.
