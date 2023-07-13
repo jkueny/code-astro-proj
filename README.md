@@ -2,6 +2,7 @@
 
 # Instructions for use
 
+- Installation: '''pip install FindDouble==0.1'''
 - 
 
 The need for a single, bright star for calibrations arises for many astronomers interested in high-resolution imaging. The purpose of this package is to return a catalog of bright, likely single stars by filtering out multiple star systems.
