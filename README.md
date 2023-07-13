@@ -26,6 +26,6 @@ Future plans for this project include creating a SQL database to populate with m
 
 [TODO] Change repository name to be more unique/descriptive, but how does this change git behavior?
 [TODO] make more general by defining more (all?) object identifiers in SIMBAD for additional catalog inputs on command line. This way we only ever need to query Gaia and SIMBAD once, and adding additional catalogs will not slow down the code.
-[TODO] add test function(s).
+[TODO] add test function(s). E.g., negative coordinates, 0 search radius, too big/small search radius, too high/low magnitude limits, int vs. float for coords and search radius, degrees + hour angle argument compatibility
 [TODO] use pytest framework and get it to pass.
 [TODO] complete package setup and upload PyPI.
