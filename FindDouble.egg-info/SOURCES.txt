@@ -1,0 +1,9 @@
+README.md
+setup.py
+FindDouble.egg-info/PKG-INFO
+FindDouble.egg-info/SOURCES.txt
+FindDouble.egg-info/dependency_links.txt
+FindDouble.egg-info/requires.txt
+FindDouble.egg-info/top_level.txt
+search_doubles/__init__.py
+search_doubles/search_doubles_v1.py

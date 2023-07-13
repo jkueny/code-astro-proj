@@ -3,4 +3,3 @@ astropy
 matplotlib
 astroquery
 pandas
-# jupyter
