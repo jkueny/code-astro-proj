@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 def get_requires():
     reqs = []
-    for line in open('requirements.txt', 'r').readlines():
+    for line in open('./requirements.txt', 'r').readlines():
         reqs.append(line)
     return reqs
 
