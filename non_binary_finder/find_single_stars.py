@@ -44,9 +44,14 @@ def query_the_gaia(objloc,conerad,catalognamelist=["I/350/gaiaedr3","B/wds"],RUW
     if conerad >= 2.0:
         print("Search radius is large, will take longer to run ")    
     
+    #bright magnitude messages
+
+    if maglow-maghigh <=0:
+        raise ValueError("Magnitude search range is invalid!")
+
     result = Vizier.query_region(obj_coord,
                             radius=u.Quantity(conerad,u.deg),
-                             catalog=catalognamelist )
+                             catalog=catalognamelist)
     
     if RUWE:
         result=result[0][result[0]['RUWE']<1.2]
@@ -57,7 +62,6 @@ def query_the_gaia(objloc,conerad,catalognamelist=["I/350/gaiaedr3","B/wds"],RUW
         
     gaia_id_list=result['Source']
 
-    # TODO add column headers for name, RA, DEC, RUWE, mag
     header_list = ["Object_Name","RA","DEC","Mean_Gmag","RUWE"]
     singles = []
     for each,id in enumerate(gaia_id_list):
