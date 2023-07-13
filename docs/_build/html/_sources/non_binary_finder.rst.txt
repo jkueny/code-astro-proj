@@ -5,5 +5,5 @@ SearchDoubles Functions
 
 Function to cross correlate with Gaia and Wds.
 
-.. automodule:: Non_Binary_Finder_Func
+.. automodule:: find_single_stars
    :members:
