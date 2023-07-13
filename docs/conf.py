@@ -12,12 +12,12 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../search_doubles'))
+sys.path.insert(0, os.path.abspath('../non_binary_finder'))
 
 
 # -- Project information -----------------------------------------------------
 
-project = 'SearchDoubles'
+project = 'NonBinaryFinder'
 copyright = '2023, Gonzalez-Tora, G., Kueny, J., Li, J.'
 author = 'Gonzalez-Tora, G., Kueny, J., Li, J.'
 

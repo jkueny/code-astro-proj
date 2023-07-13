@@ -1,0 +1,9 @@
+.. _non-binary-finder:
+
+SearchDoubles Functions
+=====================
+
+Function to cross correlate with Gaia and Wds.
+
+.. automodule:: Non-Binary-Finder-Func
+   :members:
