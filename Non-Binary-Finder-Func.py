@@ -7,7 +7,7 @@ import numpy as np
 warnings.filterwarnings('ignore')
 from astroquery.vizier import Vizier
 from astroquery.simbad import Simbad
-%matplotlib inline
+# %matplotlib inline
 import matplotlib.pyplot as plt
 from IPython.display import Image
 from IPython.core.display import HTML

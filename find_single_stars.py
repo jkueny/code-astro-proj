@@ -25,7 +25,7 @@ def query_the_gaia(objloc,conerad,catalognamelist=["I/350/gaiaedr3","B/wds"],RUW
         conerad (float): Cone radius in degrees.
 
     Returns:
-        _type_: _description_
+        Pandas DataFrame: CSV saved to disk in the directory where this script is located.
     """ 
     ## change row limit to none; else default to 50 
     Vizier.ROW_LIMIT = -1   
@@ -46,8 +46,7 @@ def query_the_gaia(objloc,conerad,catalognamelist=["I/350/gaiaedr3","B/wds"],RUW
         
     gaia_id_list=result['Source']
 
-    # TODO add column headers for name, RA, DEC, RUWE, mag
-    header_list = ["Object_Name","RA","DEC","Mean_Gmag","RUWE"]
+    header_list = ["Object_Name","RA_hms","DEC_dms","RA_deg","DEC_deg","Mean_Gmag","RUWE"]
     singles = []
     for each,id in enumerate(gaia_id_list):
         gaia_id= "Gaia DR3"+str(id)
@@ -59,15 +58,24 @@ def query_the_gaia(objloc,conerad,catalognamelist=["I/350/gaiaedr3","B/wds"],RUW
             gaia_id_list.remove(id)
         else:
             simbadinfo=Simbad.query_object(gaia_id)
-            singles.append([simbadinfo['MAIN_ID'][0],simbadinfo['RA'][0],simbadinfo['DEC'][0],result[each]['Gmag'],result[each]['RUWE']])
+            ra_result = simbadinfo['RA'][0]
+            dec_result = simbadinfo['DEC'][0]
+            c = SkyCoord(ra=ra_result,dec=dec_result, unit=(u.hourangle,u.deg))
+            singles.append([simbadinfo['MAIN_ID'][0],
+                            ra_result,
+                            dec_result,
+                            c.ra.deg,
+                            c.dec.deg,
+                            result[each]['Gmag'],
+                            result[each]['RUWE']])
 
-    df=pd.DataFrame(singles,columns=header_list)
-    sorted_df = df.sort_values(by='Mean_Gmag', ascending=True)
-    sorted_df.to_csv("Non-Binary.csv", sep= " ",header=False)
+    df = pd.DataFrame(singles,columns=header_list)
+    sorted_df = df.sort_values(by='Mean_Gmag', ascending=True,ignore_index=True)
+    sorted_df.to_csv("Non-Binary.csv", sep= " ",header=False,index=False)
 
     return sorted_df
 
 
-print(query_the_gaia(objloc="11 02 24.8763629208 -77 33 35.667131796",
-               conerad=0.5,
-               ))
+# print(query_the_gaia(objloc="11 02 24.8763629208 -77 33 35.667131796",
+#                conerad=0.5,
+#                ))
