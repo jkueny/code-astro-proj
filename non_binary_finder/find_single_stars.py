@@ -1,16 +1,16 @@
 #Import the necessary modules
 from astropy import units as u
-from astropy.coordinates import SkyCoord#, Angle
-#from astropy.wcs import WCS
-#import warnings
-#import numpy as np
-#warnings.filterwarnings('ignore')
+from astropy.coordinates import SkyCoord, Angle
+from astropy.wcs import WCS
+import warnings
+import numpy as np
+warnings.filterwarnings('ignore')
 from astroquery.vizier import Vizier
 from astroquery.simbad import Simbad
 # %matplotlib inline
-#import matplotlib.pyplot as plt
-#from IPython.display import Image
-#from IPython.core.display import HTML
+import matplotlib.pyplot as plt
+from IPython.display import Image
+from IPython.core.display import HTML
 import pandas as pd
 
 def query_the_gaia(objloc,conerad,catalognamelist=["I/350/gaiaedr3","B/wds"],RUWE=True,maghigh=3,maglow=10):
@@ -25,7 +25,7 @@ def query_the_gaia(objloc,conerad,catalognamelist=["I/350/gaiaedr3","B/wds"],RUW
         conerad (float): Cone radius in degrees.
 
     Returns:
-        _type_: _description_
+        Pandas DataFrame: CSV saved to disk in the directory where this script is located.
     """ 
     ## change row limit to none; else default to 50 
     Vizier.ROW_LIMIT = -1   
