@@ -1,9 +1,12 @@
-# code-astro-proj
-
 # Instructions for use
 
-- Installation: '''pip install FindDouble==0.1'''
-- 
+- Installation: pip install FindDouble==0.1
+- Navigate to the parent directory where the package was installed and import find_single_stars as fss (for example).
+- Using fss.query_the_gaia(), input desired sky RA/Dec coordinate pair as first argument and cone search radius as the second argument. All other arguments are optional. Hour angle string should be in the SIMBAD database format or similar.
+- Example function call: fss.query_the_gaia(objloc="11 02 24.8763629208 -77 33 35.667131796",conerad=0.5)
+- Retrieve CSV output catalog file in the same directory the program is located in!
+
+# Intro & Relevant Background
 
 The need for a single, bright star for calibrations arises for many astronomers interested in high-resolution imaging. The purpose of this package is to return a catalog of bright, likely single stars by filtering out multiple star systems.
 
@@ -25,8 +28,4 @@ Future plans for this project include creating a SQL database to populate with m
 
 
 
-[TODO] Change repository name to be more unique/descriptive, but how does this change git behavior?
 [TODO] make more general by defining more (all?) object identifiers in SIMBAD for additional catalog inputs on command line. This way we only ever need to query Gaia and SIMBAD once, and adding additional catalogs will not slow down the code.
-[TODO] add test function(s). E.g., negative coordinates, 0 search radius, too big/small search radius, too high/low magnitude limits, int vs. float for coords and search radius, degrees + hour angle argument compatibility
-[TODO] use pytest framework and get it to pass.
-[TODO] complete package setup and upload PyPI.
