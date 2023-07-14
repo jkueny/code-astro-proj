@@ -4,7 +4,7 @@ from astropy.coordinates import SkyCoord, Angle
 from astropy.wcs import WCS
 import warnings
 import numpy as np
-warnings.filterwarnings('ignore')
+# warnings.filterwarnings('ignore')
 from astroquery.vizier import Vizier
 from astroquery.simbad import Simbad
 # %matplotlib inline
