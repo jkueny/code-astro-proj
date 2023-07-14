@@ -1,20 +1,41 @@
 #Import the necessary modules
 from astropy import units as u
-from astropy.coordinates import SkyCoord, Angle
-from astropy.wcs import WCS
-import warnings
+from astropy.coordinates import SkyCoord#, Angle
+# from astropy.wcs import WCS
+# import warnings
 import numpy as np
 # warnings.filterwarnings('ignore')
 from astroquery.vizier import Vizier
 from astroquery.simbad import Simbad
 # %matplotlib inline
-import matplotlib.pyplot as plt
-from IPython.display import Image
-from IPython.core.display import HTML
+# import matplotlib.pyplot as plt
+# from IPython.display import Image
+# from IPython.core.display import HTML
 import pandas as pd
 import re
 
 def determine_coord_units(incoords):
+    """
+
+    This function attempts to assign a unit type to the input coordinates to query_the_gaia().
+    
+    Code will raise exceptions and exit with invalid formatting or characters and will output
+    (hopefully) helpful error messages.
+
+    Invalid characers are flagged using the regular expression (re) built-in function. All
+    non-numerical characters besides spaces, plus and minus signs, and decimal points are recorded
+    and will cause the code to exit with an error message. Very handy!
+
+
+    Raises:
+        TypeError: Coordinate pairs must not be bracketed by () or [].
+        TypeError: Coordinates pairs should be strings only.
+        ValueError: HMS format should not include colons.
+        ValueError: No invalid characters in input coordinates; only numbers and spaces allowed.
+
+    Returns:
+        tuple(Astropy units object): To be input in the SkyCoord() function in query_the_gaia(). 
+    """    
     ok_chars = r'[^0-9\s+-.]'  # re filter any non-numericals; keeping spaces, decimal pts, +/-
     found_chars_not_ok = re.findall(ok_chars, incoords)
     print(found_chars_not_ok)
