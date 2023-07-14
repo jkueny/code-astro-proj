@@ -78,7 +78,7 @@ def query_the_gaia(objloc,conerad,catalognamelist=["I/350/gaiaedr3","B/wds"],RUW
 
     df=pd.DataFrame(singles,columns=header_list)
     sorted_df = df.sort_values(by='Mean_Gmag', ascending=True)
-    sorted_df.to_csv("Non-Binary.csv", sep= " ",header=False)
+    sorted_df.to_csv("bright_single_stars_catalog.csv", sep= " ",header=False)
 
     return sorted_df
 
