@@ -83,6 +83,6 @@ def query_the_gaia(objloc,conerad,catalognamelist=["I/350/gaiaedr3","B/wds"],RUW
     return sorted_df
 
 
-print(query_the_gaia(objloc="11 02 24.8763629208 -77 33 35.667131796",
-               conerad=0.5,
-               ))
+# print(query_the_gaia(objloc="11 02 24.8763629208 -77 33 35.667131796",
+#                conerad=0.5,
+#                ))
