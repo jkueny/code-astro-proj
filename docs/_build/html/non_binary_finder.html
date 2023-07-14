@@ -3,19 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SearchDoubles Functions &mdash; NonBinaryFinder 2023 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <title>SearchDoubles Functions &mdash; NonBinaryFinder 2023 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -41,12 +38,9 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">SearchDoubles Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#find_single_stars.query_the_gaia"><code class="docutils literal notranslate"><span class="pre">query_the_gaia()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SearchDoubles Functions</a></li>
 </ul>
 
         </div>
@@ -74,27 +68,57 @@
            <div itemprop="articleBody">
              
   <div class="section" id="searchdoubles-functions">
-<span id="non-binary-finder"></span><h1>SearchDoubles Functions<a class="headerlink" href="#searchdoubles-functions" title="Permalink to this heading"></a></h1>
+<span id="non-binary-finder"></span><h1>SearchDoubles Functions<a class="headerlink" href="#searchdoubles-functions" title="Permalink to this headline">¶</a></h1>
 <p>Function to cross correlate with Gaia and Wds.</p>
-<span class="target" id="module-find_single_stars"></span><dl class="py function">
-<dt class="sig sig-object py" id="find_single_stars.query_the_gaia">
-<span class="sig-prename descclassname"><span class="pre">find_single_stars.</span></span><span class="sig-name descname"><span class="pre">query_the_gaia</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objloc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conerad</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">catalognamelist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['I/350/gaiaedr3',</span> <span class="pre">'B/wds']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RUWE</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maghigh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maglow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#find_single_stars.query_the_gaia" title="Permalink to this definition"></a></dt>
+<span class="target" id="module-find_single_stars"></span><dl class="function">
+<dt id="find_single_stars.determine_coord_units">
+<code class="sig-prename descclassname">find_single_stars.</code><code class="sig-name descname">determine_coord_units</code><span class="sig-paren">(</span><em class="sig-param">incoords</em><span class="sig-paren">)</span><a class="headerlink" href="#find_single_stars.determine_coord_units" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function attempts to assign a unit type to the input coordinates to query_the_gaia().</p>
+<p>Code will raise exceptions and exit with invalid formatting or characters and will output
+(hopefully) helpful error messages.</p>
+<p>Invalid characers are flagged using the regular expression (re) built-in function. All
+non-numerical characters besides spaces, plus and minus signs, and decimal points are recorded
+and will cause the code to exit with an error message. Very handy!</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TypeError</strong> – Coordinate pairs must not be bracketed by () or [].</p></li>
+<li><p><strong>TypeError</strong> – Coordinates pairs should be strings only.</p></li>
+<li><p><strong>ValueError</strong> – HMS format should not include colons.</p></li>
+<li><p><strong>ValueError</strong> – No invalid characters in input coordinates; only numbers and spaces allowed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>To be input in the SkyCoord() function in query_the_gaia().</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple(Astropy units object)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="find_single_stars.query_the_gaia">
+<code class="sig-prename descclassname">find_single_stars.</code><code class="sig-name descname">query_the_gaia</code><span class="sig-paren">(</span><em class="sig-param">objloc, conerad, catalognamelist=['I/350/gaiaedr3', 'B/wds'], RUWE=True, maghigh=3, maglow=10</em><span class="sig-paren">)</span><a class="headerlink" href="#find_single_stars.query_the_gaia" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function will query the input list of catalogs using the Astropy Vizier API.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>catalognamelist</strong> (<em>list</em>) – List of catalog name strings as shown on Vizier.</p></li>
+<li><p><strong>objloc</strong> (<em>-</em>) – RA/Dec coordinate pair to pass into Vizier.query_region().</p></li>
+<li><p><strong>&quot;11 02 24.8763629208 -77 33 35.667131796&quot;</strong> (<em>Ex.</em>) – </p></li>
+<li><p><strong>conerad</strong> (<em>-</em>) – Cone radius in degrees.</p></li>
+<li><p><strong>catalognamelist</strong> (<em>-</em>) – List of catalog name strings as shown on Vizier. [optional]</p></li>
 <li><p><strong>&quot;I/350/gaiaedr3&quot;</strong> (<em>Ex.</em>) – </p></li>
-<li><p><strong>objloc</strong> (<em>string</em>) – RA/Dec coordinate pair to pass into Vizier.query_region().</p></li>
-<li><p><strong>35.667131796&quot;</strong> (<em>Ex. &quot;11 02 24.8763629208 -77 33</em>) – </p></li>
-<li><p><strong>conerad</strong> (<em>float</em>) – Cone radius in degrees.</p></li>
+<li><p><strong>RUWE</strong> (<em>-</em>) – Toggle RUWE filtering metric (refer to README for theory) [optional]</p></li>
+<li><p><strong>maghigh</strong> (<em>-</em>) – Brightness limit for queried objects. [optional]</p></li>
+<li><p><strong>maglow</strong> (<em>-</em>) – Faintness limit for queried objects. [optional]</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>_description_</p>
+<dd class="field-even"><p>CSV saved to disk in the directory where this script is located.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>_type_</p>
+<dd class="field-odd"><p>pd.DataFrame</p>
 </dd>
 </dl>
 </dd></dl>

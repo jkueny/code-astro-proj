@@ -1,6 +1,6 @@
 .. _non_binary_finder:
 
-SearchDoubles Functions
+Find Bright Hot Singles Functions
 =====================
 
 Function to cross correlate with Gaia and Wds.
