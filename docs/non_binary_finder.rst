@@ -1,4 +1,4 @@
-.. _non_binary_finder:
+.. _singles:
 
 Find Bright Hot Singles Functions
 =====================
